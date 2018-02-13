@@ -18,13 +18,21 @@ const notesSchema = new mongoose.Schema({
   create: {type: Date, default: Date.now},
 });
 
+notesSchema.set('toObject', {
+  transform: function (doc, ret) {
+    ret.id = ret._id;
+    delete ret._id;
+    delete ret.__v;
+  }
+});
+
 const Note = mongoose.model('Note', notesSchema);
 
 // Note.create
 
-Note.create({
-  title: 'Cats',
-  content: 'Cats like tuna, so do I!'
-});
+// Note.create({
+//   title: 'Cats',
+//   content: 'Cats like tuna, so do I!'
+// });
 
 module.exports = Note;
