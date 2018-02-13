@@ -12,7 +12,7 @@ const {MONGODB_URI} = require('../config');
 // console.log(DATABASE_URL);
 
 
-const notesSchema = new Schema({
+const notesSchema = new mongoose.Schema({
   title:  {type: String, required: true},
   content: {type: String, required: true},
   create: {type: Date, default: Date.now},
@@ -27,3 +27,4 @@ Note.create({
   content: 'Cats like tuna, so do I!'
 });
 
+module.exports = Note;
