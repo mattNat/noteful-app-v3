@@ -20,7 +20,7 @@ const notesSchema = new Schema({
 
 const Note = mongoose.model('Note', notesSchema);
 
-Note.create
+// Note.create
 
 Note.create({
   title: 'Cats',
