@@ -16,6 +16,8 @@ router.get('/notes', (req, res, next) => {
 
 });
 
+
+
 /* ========== GET/READ A SINGLE ITEM ========== */
 router.get('/notes/:id', (req, res, next) => {
 
