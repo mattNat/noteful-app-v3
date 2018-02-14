@@ -54,7 +54,7 @@ mongoose.connect(MONGODB_URI)
   .catch(err => {
     console.error(`ERROR: ${err.message}`);
     console.error(err);
-  });
+  })
 
 // // find by id 
 // mongoose.connect(MONGODB_URI)

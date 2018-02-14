@@ -2,12 +2,15 @@
 
 const express = require('express');
 const morgan = require('morgan');
+
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const { PORT, MONGODB_URI } = require('./config');
 
 const notesRouter = require('./routes/notes');
+
+// mongoose.connect(MONGODB_URI);
 
 // Create an Express application
 const app = express();
@@ -43,7 +46,14 @@ app.use(function (err, req, res, next) {
   });
 });
 
-// Listen for incoming connections
+// // Listen for incoming connections
+// app.listen(PORT, function () {
+//   console.info(`Server listening on ${this.address().port}`);
+// }).on('error', err => {
+//   console.error(err);
+// });
+
+// Connect to DB and Listen for incoming connections
 mongoose.connect(MONGODB_URI)
   .then(instance => {
     const conn = instance.connections[0];
