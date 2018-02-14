@@ -5,4 +5,5 @@
 // exports.PORT = process.env.PORT || 8080;
 
 exports.MONGODB_URI = process.env.MONGODB_URI || 'mongodb://admin:admin123@localhost/noteful-app?authSource=admin';
+exports.TEST_MONGODB_URI = process.env.TEST_MONGODB_URI || 'mongodb://admin:admin123@localhost/noteful-app-test?authSource=admin';
 exports.PORT = process.env.PORT || 8080;
