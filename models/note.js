@@ -6,7 +6,8 @@ mongoose.Promise = global.Promise;
 const noteSchema = new mongoose.Schema({
   title: { type: String, index: true },
   content: String,
-  created: { type: Date, default: Date.now },
+  folderId: { type: mongoose.Schema.Types.ObjectId, ref: 'Folder' },
+  created: { type: Date, default: Date.now }
 });
 
 noteSchema.index({ title: 'text', content: 'text' });
