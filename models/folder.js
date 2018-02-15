@@ -7,7 +7,8 @@ const folderSchema = new mongoose.Schema({
   name: { type: String, index: true, unique:true },
 });
 
-folderSchema.index({ name: 'text'});
+// don't have to use b/c unique field dec above
+// folderSchema.index({ name: 'text'});
 
 folderSchema.set('toObject', {
   transform: function (doc, ret) {

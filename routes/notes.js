@@ -11,19 +11,35 @@ const Note = require('../models/note');
 /* ========== GET/READ ALL ITEMS ========== */
 router.get('/notes', (req, res, next) => {
   const { searchTerm } = req.query;
+  const { folderId } = req.query;
 
   let filter = {};
   let projection = {};
   let sort = 'created'; // default sorting
 
   if (searchTerm) {
+    // console.log(searchTerm);
+    // something to do with index we set up
+    // mongo
     filter.$text = { $search: searchTerm };
+
+    console.log('FILTER IS: ', filter.$text);
+    
+
     projection.score = { $meta: 'textScore' };
     sort = projection;
   }
 
+  
+  if (folderId) {
+    // filter.$text = { $search: folderId };
+    filter.folderId = folderId;
+    // projection.score = { $meta: 'textScore' };
+    // sort = projection;
+  }
+
   Note.find(filter, projection)
-    .select('title content created')
+    .select('id title content folderId created')
     .sort(sort)
     .then(results => {
       res.json(results);
