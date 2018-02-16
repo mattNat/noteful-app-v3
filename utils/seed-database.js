@@ -31,6 +31,12 @@ mongoose.connect(MONGODB_URI)
         console.info(`Inserted ${results.length} Notes`);
       });
   })
+  .then(() => {
+    return Tag.insertMany(seedTags)
+      .then(results => {
+        console.info(`Inserted ${results.length} Tags`);
+      });
+  })
   .then(() => {return Note.createIndexes()})
   .then(() => {return Folder.createIndexes()})
   .then(() => {return Tag.createIndexes()})

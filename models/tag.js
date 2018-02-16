@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
-mongoose.Promise = global.promise;
+mongoose.Promise = global.Promise;
 
 const tagSchema = new mongoose.Schema({
   name: {type: String, unique: true}
