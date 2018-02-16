@@ -127,7 +127,7 @@ router.delete('/folders/:id', (req, res, next) => {
   const deleteNotes  = Note.deleteMany({folderId: req.params.id});
   const resetFolderId = Note.update({folderId: req.params.id}, {$set: {folderId: null}});
 
-  Promise.all([deleteFolder, deleteNotes])
+  Promise.all([deleteFolder, resetFolderId])
     .then(folderResults => {
       const result = folderResults[0];
       if (result) {
