@@ -2,11 +2,15 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const { MONGODB_URI } = require('../config');
+
 const Note = require('../models/note');
-const Folder = require('../models/folder')
+const Folder = require('../models/folder');
+const Tag = require('../models/tag');
 
 const seedNotes = require('../db/seed/notes');
 const seedFolders = require('../db/seed/folder');
+const seedTags = require('../db/seed/tag');
+
 
 mongoose.connect(MONGODB_URI)
   .then(() => {
@@ -27,12 +31,9 @@ mongoose.connect(MONGODB_URI)
         console.info(`Inserted ${results.length} Notes`);
       });
   })
-  .then(() => {
-    return Note.createIndexes()
-      // .then(results => {
-      //   console.info(`Inserted ${results} Indexes`);
-      // })
-  })
+  .then(() => {return Note.createIndexes()})
+  .then(() => {return Folder.createIndexes()})
+  .then(() => {return Tag.createIndexes()})
   .then(() => {
     return mongoose.disconnect()
       .then(() => {
