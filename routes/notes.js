@@ -16,7 +16,7 @@ router.get('/notes', (req, res, next) => {
   let filter = {};
   let projection = {};
   let sort = 'created'; // default sorting
-
+  
   if (searchTerm) {
     // console.log(searchTerm);
     // something to do with index we set up
